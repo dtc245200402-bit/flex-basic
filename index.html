@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thực hành CSS | flex-basis Property</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">CSS FLEXBOX · THỰC HÀNH</span>
+      <h1><code>flex-basis</code> Property</h1>
+      <p>Khám phá kích thước cơ sở của Flex Item và cách nó thay đổi theo trục chính, phần trăm và <code>flex-grow</code>.</p>
+      <div class="hero-tags">
+        <span>01 · px</span><span>02 · column</span><span>03 · %</span><span>04 · grow</span><span>05 · global values</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="intro panel">
+      <div class="intro-icon">↔</div>
+      <div>
+        <h2>Điều cần nhớ</h2>
+        <p><code>flex-basis</code> đặt kích thước cơ sở của Flex Item trên <strong>main axis</strong>. Với <code>flex-direction: row</code>, trục chính là chiều ngang; với <code>column</code>, trục chính là chiều dọc. Sau đó, Flexbox có thể điều chỉnh kích thước theo <code>flex-grow</code> và <code>flex-shrink</code>.</p>
+      </div>
+    </section>
+
+    <section class="lesson panel" id="example-px">
+      <div class="section-heading">
+        <span class="number">01</span>
+        <div><h2>Kích thước cơ sở bằng <code>px</code></h2><p>Mỗi item có giá trị <code>flex-basis</code> riêng trong một hàng ngang.</p></div>
+      </div>
+      <div class="demo-shell scroll-demo">
+        <div class="demo px-demo">
+          <div class="flex-item px-200"><strong>Item 1</strong><span>200px</span></div>
+          <div class="flex-item px-100"><strong>Item 2</strong><span>100px</span></div>
+          <div class="flex-item px-150"><strong>Item 3</strong><span>150px</span></div>
+        </div>
+      </div>
+      <div class="code-row"><code>.item1 { flex-basis: 200px; }</code><code>.item2 { flex-basis: 100px; }</code><code>.item3 { flex-basis: 150px; }</code></div>
+      <p class="note">Đặt <code>flex-shrink: 0</code> trong ví dụ này để thấy rõ độ rộng cơ sở từng item mà không bị co lại.</p>
+    </section>
+
+    <section class="lesson panel" id="example-column">
+      <div class="section-heading">
+        <span class="number">02</span>
+        <div><h2><code>flex-direction: column</code></h2><p>Khi trục chính là chiều dọc, <code>flex-basis: 100px</code> xác định kích thước cơ sở theo chiều cao.</p></div>
+      </div>
+      <div class="demo-shell">
+        <div class="demo column-demo">
+          <div class="flex-item column-item"><strong>Item 1</strong><span>basis: 100px</span></div>
+          <div class="flex-item column-item"><strong>Item 2</strong><span>basis: 100px</span></div>
+          <div class="flex-item column-item"><strong>Item 3</strong><span>basis: 100px</span></div>
+        </div>
+      </div>
+      <div class="code-row"><code>flex-direction: column;</code><code>flex-basis: 100px;</code></div>
+    </section>
+
+    <section class="lesson panel" id="example-percent">
+      <div class="section-heading">
+        <span class="number">03</span>
+        <div><h2>Sử dụng giá trị <code>%</code></h2><p>Hai item có <code>flex-basis: 50%</code> tính theo kích thước bên trong của container dọc theo trục chính.</p></div>
+      </div>
+      <div class="demo-shell">
+        <div class="demo percent-demo">
+          <div class="flex-item percent-item"><strong>Item 1</strong><span>flex-basis: 50%</span></div>
+          <div class="flex-item percent-item"><strong>Item 2</strong><span>flex-basis: 50%</span></div>
+        </div>
+      </div>
+      <div class="code-row"><code>flex-basis: 50%;</code><code>gap: 10px;</code></div>
+      <p class="note">Vì hai giá trị 50% cộng với khoảng cách 10px lớn hơn 100% một chút, <code>flex-shrink</code> mặc định có thể làm hai item co lại để vừa container.</p>
+    </section>
+
+    <section class="lesson panel" id="example-grow">
+      <div class="section-heading">
+        <span class="number">04</span>
+        <div><h2>Kết hợp <code>flex-basis</code> và <code>flex-grow</code></h2><p>Cả ba item bắt đầu từ 100px, rồi nhận phần không gian trống theo tỷ lệ <code>1 : 2 : 1</code>.</p></div>
+      </div>
+      <div class="demo-shell">
+        <div class="demo grow-demo">
+          <div class="flex-item grow-one"><strong>Item 1</strong><span>basis: 100px · grow: 1</span></div>
+          <div class="flex-item grow-two"><strong>Item 2</strong><span>basis: 100px · grow: 2</span></div>
+          <div class="flex-item grow-one"><strong>Item 3</strong><span>basis: 100px · grow: 1</span></div>
+        </div>
+      </div>
+      <div class="code-row"><code>Item 1: basis 100px; grow 1</code><code>Item 2: basis 100px; grow 2</code><code>Item 3: basis 100px; grow 1</code></div>
+      <p class="note">Với container rộng 600px và gap 10px, Item 2 nhận phần không gian trống lớn gấp đôi mỗi item còn lại.</p>
+    </section>
+
+    <section class="lesson panel" id="example-values">
+      <div class="section-heading">
+        <span class="number">05</span>
+        <div><h2><code>auto</code>, <code>initial</code> và <code>inherit</code></h2><p>So sánh các giá trị phổ biến khác của thuộc tính.</p></div>
+      </div>
+      <div class="demo-shell">
+        <div class="demo values-demo">
+          <div class="flex-item value-auto"><strong>auto</strong><span>width: 150px</span></div>
+          <div class="flex-item value-initial"><strong>initial</strong><span>tương đương auto</span></div>
+          <div class="flex-item value-inherit"><strong>inherit</strong><span>basis: 180px</span></div>
+        </div>
+      </div>
+      <div class="value-notes">
+        <p><code>auto</code>: dùng kích thước chính như <code>width</code> hoặc kích thước nội dung.</p>
+        <p><code>initial</code>: đặt về giá trị mặc định của <code>flex-basis</code>, tức <code>auto</code>.</p>
+        <p><code>inherit</code>: kế thừa giá trị từ phần tử cha; ví dụ này kế thừa <code>180px</code>.</p>
+      </div>
+    </section>
+
+    <section class="summary panel">
+      <h2>Tóm tắt nhanh</h2>
+      <div class="summary-grid">
+        <div><strong><code>row</code></strong><span>flex-basis theo chiều ngang</span></div>
+        <div><strong><code>column</code></strong><span>flex-basis theo chiều dọc</span></div>
+        <div><strong><code>%</code></strong><span>tỷ lệ theo kích thước container trên main axis</span></div>
+        <div><strong><code>flex-grow</code></strong><span>phân phối không gian trống</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><span>CSS Flexbox Practice</span><span>flex-basis · HTML + CSS</span></footer>
+</body>
+</html>
